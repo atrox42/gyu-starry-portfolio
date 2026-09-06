@@ -20,6 +20,7 @@ function WorkRow({ item, index }: { item: WorkItem; index: number }) {
         ) : null}
       </div>
       <span className="work-row__arrow" aria-hidden="true">
+        <span className="work-row__hint">보기</span>
         →
       </span>
     </Link>

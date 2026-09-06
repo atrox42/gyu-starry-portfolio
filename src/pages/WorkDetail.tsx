@@ -26,6 +26,14 @@ export function WorkDetail() {
           </div>
         ) : null}
         <p className="detail__note">{workLabel(work)}</p>
+        <a
+          className="detail__notion"
+          href={work.notionUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          노션에서 케이스 보기 →
+        </a>
       </div>
     </main>
   );

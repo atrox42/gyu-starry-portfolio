@@ -1,28 +1,51 @@
 import { useEffect, useState } from "react";
 
-export function useActiveSection(ids: readonly string[]): string {
+const VIEWPORT_MARK = 0.3;
+
+export function useActiveSection(
+  ids: readonly string[],
+  enabled = true,
+): string {
   const [active, setActive] = useState(ids[0] ?? "");
+  const key = ids.join();
 
   useEffect(() => {
-    const nodes = ids
+    if (!enabled) return;
+
+    const list = key.split(",").filter(Boolean);
+    const nodes = list
       .map((id) => document.getElementById(id))
       .filter((node): node is HTMLElement => Boolean(node));
 
     if (nodes.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActive(visible.target.id);
-      },
-      { rootMargin: "-28% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] },
-    );
+    const update = () => {
+      const marker = window.innerHeight * VIEWPORT_MARK;
+      let current = list[0] ?? "";
+      let closest = Number.POSITIVE_INFINITY;
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, [ids]);
+      for (const node of nodes) {
+        const top = node.getBoundingClientRect().top;
+        if (top <= marker) {
+          const distance = marker - top;
+          if (distance < closest) {
+            closest = distance;
+            current = node.id;
+          }
+        }
+      }
+
+      setActive((prev) => (prev === current ? prev : current));
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [key, enabled]);
 
   return active;
 }

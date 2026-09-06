@@ -29,6 +29,8 @@ html {
   color: var(--text);
   font-family: var(--font);
   letter-spacing: var(--tracking);
+  word-break: keep-all;
+  overflow-wrap: break-word;
   scroll-behavior: auto;
 }
 
@@ -47,6 +49,8 @@ body {
   font-weight: 400;
   line-height: 1.7;
   letter-spacing: var(--tracking);
+  word-break: keep-all;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -57,6 +61,22 @@ body.has-cursor {
 
 .font-display {
   letter-spacing: var(--tracking);
+}
+
+p,
+h1,
+h2,
+h3,
+li,
+.intro__lead,
+.intro__copy,
+.what,
+.presence__copy,
+.quote,
+.why,
+.works__bridge {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 img {
@@ -527,11 +547,13 @@ em.mark {
 
 .works__bridge {
   margin: 0 0 56px;
-  max-width: 14em;
+  max-width: min(22em, 100%);
   font-size: clamp(28px, 5vw, 48px);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: var(--tracking);
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .work-group {
@@ -551,18 +573,28 @@ em.mark {
   grid-template-columns: 48px 1fr auto;
   gap: 12px 16px;
   align-items: start;
-  padding: 28px 0;
+  padding: 28px 12px;
+  margin: 0 -12px;
   border-bottom: 1px solid var(--line);
   color: inherit;
-  transition: color 0.3s;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .work-row:first-of-type {
   border-top: 1px solid var(--line);
 }
 
+.work-row:hover,
+.work-row:focus-visible {
+  background: rgba(255, 76, 0, 0.08);
+}
+
 .work-row:hover .work-row__title,
-.work-row:hover .work-row__arrow {
+.work-row:hover .work-row__arrow,
+.work-row:focus-visible .work-row__title,
+.work-row:focus-visible .work-row__arrow {
   color: var(--accent);
 }
 
@@ -610,9 +642,18 @@ em.mark {
 
 .work-row__arrow {
   align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 22px;
   color: var(--dim);
   transition: color 0.3s, transform 0.3s var(--ease);
+}
+
+.work-row__hint {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: var(--tracking);
 }
 
 .work-row:hover .work-row__arrow {
@@ -758,6 +799,21 @@ em.mark {
   color: var(--muted);
 }
 
+.detail__notion {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 28px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: var(--tracking);
+  cursor: pointer;
+}
+
+.detail__notion:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 768px) {
   .nav__toggle {
     display: none;
@@ -802,7 +858,7 @@ em.mark {
 @media (min-width: 1100px) {
   .work-row {
     grid-template-columns: 64px minmax(0, 1fr) auto;
-    padding: 36px 0;
+    padding: 36px 12px;
   }
 }
 

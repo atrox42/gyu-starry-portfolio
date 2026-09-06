@@ -26,6 +26,7 @@ export type WorkItem = {
   title: string;
   group: WorkGroup;
   tags: readonly string[];
+  notionUrl: string;
 };
 
 export type Award = {
@@ -147,6 +148,7 @@ export const works: WorkItem[] = [
     title: "App Design System",
     group: "recent",
     tags: [],
+    notionUrl: "https://app.notion.com/p/2920e090c29f8094bb65f4bda5c439eb",
   },
   {
     slug: "flagshop",
@@ -154,6 +156,7 @@ export const works: WorkItem[] = [
     title: "FLAGSHOP",
     group: "recent",
     tags: ["브랜딩", "BI Design", "브랜드아이덴티티"],
+    notionUrl: "https://app.notion.com/p/1590e090c29f8081a0f4c87010b628bb",
   },
   {
     slug: "bittmate",
@@ -161,6 +164,7 @@ export const works: WorkItem[] = [
     title: "Bittmate",
     group: "uiux",
     tags: ["UiuX", "글로벌암호화폐거래소", "Blockchain"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f8101a90ff0f1a7c7ef18",
   },
   {
     slug: "walkershigh-preorder",
@@ -168,6 +172,7 @@ export const works: WorkItem[] = [
     title: "PRE-ORDER",
     group: "uiux",
     tags: ["UiuX", "웹/모바일", "디자인시스템", "프리오더서비스"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f81b68414c1b5407fcc37",
   },
   {
     slug: "sbc",
@@ -175,6 +180,7 @@ export const works: WorkItem[] = [
     title: "SBC",
     group: "uiux",
     tags: ["UiuX", "프로세스개선"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f811d8949d3bbdfde887c",
   },
   {
     slug: "sbc-process-flow",
@@ -182,6 +188,7 @@ export const works: WorkItem[] = [
     title: "SBC : Process Flow",
     group: "uiux",
     tags: ["UiuX", "프로세스개선"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f81f3be2df0b0a98cce6f",
   },
   {
     slug: "gr",
@@ -189,6 +196,7 @@ export const works: WorkItem[] = [
     title: "GR",
     group: "uiux",
     tags: ["UiuX", "보험플랫폼", "보험료비교"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f817bbed5ef44b81e72a8",
   },
   {
     slug: "only1",
@@ -196,6 +204,7 @@ export const works: WorkItem[] = [
     title: "Only1",
     group: "uiux",
     tags: ["UiuX", "웹/모바일", "디자인"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f81c59953e4eb99ed03c4",
   },
   {
     slug: "sode1",
@@ -203,6 +212,7 @@ export const works: WorkItem[] = [
     title: "Sode1",
     group: "uiux",
     tags: ["UiuX", "웹/모바일", "디자인"],
+    notionUrl: "https://app.notion.com/p/3190e090c29f815fa326e8b6a5ef6bab",
   },
   {
     slug: "bmealsig",
@@ -210,6 +220,7 @@ export const works: WorkItem[] = [
     title: "Bmealsig",
     group: "bibx",
     tags: ["브랜딩", "F&B", "BI Design"],
+    notionUrl: "https://app.notion.com/p/f9f8062a7e6948788ff93f0efc9ebb19",
   },
   {
     slug: "hypermeta",
@@ -217,6 +228,7 @@ export const works: WorkItem[] = [
     title: "Hypermeta",
     group: "bibx",
     tags: ["브랜딩", "BI Design", "VR Agency"],
+    notionUrl: "https://app.notion.com/p/ba66fc14a973478f9ad96663661f7db1",
   },
   {
     slug: "pullup",
@@ -224,6 +236,7 @@ export const works: WorkItem[] = [
     title: "PULLUP",
     group: "bibx",
     tags: ["브랜딩", "BX Design", "Logo"],
+    notionUrl: "https://app.notion.com/p/070b53c217294b148f2a8693fd422c82",
   },
   {
     slug: "covyn",
@@ -231,6 +244,7 @@ export const works: WorkItem[] = [
     title: "Covyn",
     group: "bibx",
     tags: ["브랜딩", "골프웨어", "BI Design"],
+    notionUrl: "https://app.notion.com/p/873f0c4e4a5a479f886100188b459eca",
   },
   {
     slug: "jamplanet",
@@ -238,6 +252,7 @@ export const works: WorkItem[] = [
     title: "JAMPLANET",
     group: "bibx",
     tags: ["브랜딩", "BI Design"],
+    notionUrl: "https://app.notion.com/p/f53617964e3e4edfab72f0f41b3b6100",
   },
 ];
 

@@ -6,8 +6,14 @@ import { useActiveSection } from "../hooks/useActiveSection";
 export function Nav() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const active = useActiveSection(navItems.map((item) => item.id));
   const onHome = location.pathname === "/";
+  const active = useActiveSection(
+    navItems.map((item) => item.id),
+    onHome,
+  );
+  const homeBase = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 
   const close = () => setOpen(false);
 
@@ -21,7 +27,7 @@ export function Nav() {
           {navItems.map((item) => (
             <a
               key={item.id}
-              href={onHome ? item.href : `/${item.href}`}
+              href={onHome ? item.href : `${homeBase}${item.href}`}
               className={onHome && active === item.id ? "is-active" : undefined}
             >
               {item.label}
@@ -46,7 +52,7 @@ export function Nav() {
         {navItems.map((item) => (
           <a
             key={item.id}
-            href={onHome ? item.href : `/${item.href}`}
+            href={onHome ? item.href : `${homeBase}${item.href}`}
             className={onHome && active === item.id ? "is-active" : undefined}
             onClick={close}
           >
