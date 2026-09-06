@@ -30,6 +30,17 @@ export function useActiveSection(
         }
       }
 
+      const last = nodes[nodes.length - 1];
+      if (last) {
+        const root = document.scrollingElement ?? document.documentElement;
+        const atBottom =
+          last.getBoundingClientRect().bottom <= window.innerHeight + 8 ||
+          root.scrollTop + window.innerHeight >= root.scrollHeight - 8;
+        if (atBottom && last.getBoundingClientRect().top < window.innerHeight) {
+          current = last.id;
+        }
+      }
+
       setActive((prev) => (prev === current ? prev : current));
     };
 
