@@ -32,6 +32,7 @@ html {
   word-break: keep-all;
   overflow-wrap: break-word;
   scroll-behavior: auto;
+  scroll-padding-top: var(--nav-h);
 }
 
 html.lenis,
@@ -286,6 +287,12 @@ a:focus-visible {
 .shell {
   width: min(100% - var(--pad) * 2, var(--max));
   margin-inline: auto;
+}
+
+.section,
+.footer,
+.hero {
+  scroll-margin-top: var(--nav-h);
 }
 
 .section {

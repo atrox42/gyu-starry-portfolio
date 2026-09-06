@@ -17,7 +17,10 @@ export function useSmoothScroll(): void {
       smoothWheel: true,
     });
 
-    lenis.on("scroll", ScrollTrigger.update);
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
+      window.dispatchEvent(new Event("portfolio:scroll"));
+    });
     const ticker = (time: number) => {
       lenis.raf(time * 1000);
     };
