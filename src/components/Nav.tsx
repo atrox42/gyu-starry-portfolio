@@ -15,7 +15,7 @@ export function Nav() {
     <>
       <header className="nav">
         <Link className="nav__brand" to="/" onClick={close}>
-          <span>{identity.handle}</span>
+          {identity.handle}
         </Link>
         <nav className="nav__links" aria-label="섹션">
           {navItems.map((item) => (
