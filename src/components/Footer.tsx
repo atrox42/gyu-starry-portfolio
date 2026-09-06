@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="footer" id="contact">
       <div className="shell">
         <p className="kicker">05 — Contact</p>
-        <h2 className="footer__title">Contact</h2>
+        <h2 className="footer__title font-display">Contact</h2>
         <a className="footer__mail" href={`mailto:${identity.email}`}>
           {identity.email}
         </a>

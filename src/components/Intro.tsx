@@ -14,7 +14,7 @@ export function Intro() {
       <div className="shell">
         <Reveal>
           <p className="kicker">01 — Intro / Focus</p>
-          <p className="intro__lead">
+          <p className="intro__lead font-display">
             {intro.greeting}
             <br />
             <em className="mark">{intro.leadEmphasis}</em>

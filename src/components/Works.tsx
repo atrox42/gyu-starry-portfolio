@@ -8,7 +8,7 @@ function WorkRow({ item, index }: { item: WorkItem; index: number }) {
       <span className="work-row__index">{String(index + 1).padStart(2, "0")}</span>
       <div>
         <p className="work-row__client">[{item.client}]</p>
-        <h3 className="work-row__title">{item.title}</h3>
+        <h3 className="work-row__title font-display">{item.title}</h3>
         {item.tags.length > 0 ? (
           <div className="work-row__tags">
             {item.tags.map((tag) => (
@@ -32,7 +32,7 @@ export function Works() {
       <div className="shell">
         <Reveal>
           <p className="kicker">03 — Selected Works</p>
-          <p className="works__bridge">{worksBridge}</p>
+          <p className="works__bridge font-display">{worksBridge}</p>
         </Reveal>
         {workGroups.map((group) => (
           <div className="work-group" key={group.id} id={group.id}>

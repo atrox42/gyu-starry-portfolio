@@ -37,7 +37,7 @@ export function Hero() {
             <p className="hero__handle" data-hero>
               {identity.handle}
             </p>
-            <h1 className="hero__title" data-hero>
+            <h1 className="hero__title font-display" data-hero>
               <em>UiuX 디자이너,</em>
               <span>{identity.name}</span>
             </h1>

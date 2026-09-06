@@ -54,6 +54,7 @@ export const identity = {
     "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/시각 시스템)까지 연결할 수 있는 UX/UI 디자이너",
   email: "atrox42@gmail.com",
   instagramUrl: "https://www.instagram.com/gyu.starry/",
+  blogUrl: "https://blog.naver.com/acgwang",
   year: 2026,
   illustrationCredit: {
     label: "Open Peeps",
@@ -128,6 +129,7 @@ export const presence = {
     {
       id: "blog",
       label: "Blog",
+      url: identity.blogUrl,
       paragraphs: [
         "ACG 패션 스타일링, 상품 리뷰, 등산/트레킹 기록을 운영합니다.",
         "단순 후기보다는 제품 특징과 활용 상황을 정리해, 독자가 빠르게 판단할 수 있는 형태로 콘텐츠를 구성합니다.",

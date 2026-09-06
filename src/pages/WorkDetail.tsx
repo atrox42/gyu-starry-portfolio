@@ -15,7 +15,7 @@ export function WorkDetail() {
         </Link>
         <p className="kicker">{groupLabel(work.group)}</p>
         <p className="detail__client">[{work.client}]</p>
-        <h1>{work.title}</h1>
+        <h1 className="font-display">{work.title}</h1>
         {work.tags.length > 0 ? (
           <div className="work-row__tags">
             {work.tags.map((tag) => (
