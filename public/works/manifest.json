@@ -1,0 +1,88 @@
+{
+  "flagshop-app-design-system": {
+    "thumb": "works/flagshop-app-design-system/thumb.jpg",
+    "images": [
+      "works/flagshop-app-design-system/01.jpg"
+    ]
+  },
+  "flagshop": {
+    "thumb": "works/flagshop/thumb.jpg",
+    "images": [
+      "works/flagshop/01.jpg",
+      "works/flagshop/02.jpg"
+    ]
+  },
+  "bittmate": {
+    "thumb": "works/bittmate/thumb.jpg",
+    "images": [
+      "works/bittmate/01.jpg"
+    ]
+  },
+  "walkershigh-preorder": {
+    "thumb": "works/walkershigh-preorder/thumb.jpg",
+    "images": [
+      "works/walkershigh-preorder/01.jpg",
+      "works/walkershigh-preorder/02.jpg"
+    ]
+  },
+  "sbc": {
+    "thumb": "works/sbc/thumb.jpg",
+    "images": [
+      "works/sbc/01.jpg"
+    ]
+  },
+  "sbc-process-flow": {
+    "thumb": "works/sbc-process-flow/thumb.jpg",
+    "images": [
+      "works/sbc-process-flow/01.jpg"
+    ]
+  },
+  "gr": {
+    "thumb": "works/gr/thumb.jpg",
+    "images": [
+      "works/gr/01.jpg"
+    ]
+  },
+  "only1": {
+    "thumb": "works/only1/thumb.jpg",
+    "images": [
+      "works/only1/01.jpg"
+    ]
+  },
+  "sode1": {
+    "thumb": "works/sode1/thumb.jpg",
+    "images": [
+      "works/sode1/01.jpg"
+    ]
+  },
+  "bmealsig": {
+    "thumb": "works/bmealsig/thumb.jpg",
+    "images": [
+      "works/bmealsig/01.jpg"
+    ]
+  },
+  "hypermeta": {
+    "thumb": "works/hypermeta/thumb.jpg",
+    "images": [
+      "works/hypermeta/01.jpg"
+    ]
+  },
+  "pullup": {
+    "thumb": "works/pullup/thumb.jpg",
+    "images": [
+      "works/pullup/01.jpg"
+    ]
+  },
+  "covyn": {
+    "thumb": "works/covyn/thumb.jpg",
+    "images": [
+      "works/covyn/01.jpg"
+    ]
+  },
+  "jamplanet": {
+    "thumb": "works/jamplanet/thumb.jpg",
+    "images": [
+      "works/jamplanet/01.jpg"
+    ]
+  }
+}
