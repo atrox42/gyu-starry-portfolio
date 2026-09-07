@@ -32,28 +32,18 @@ export function Hero() {
   return (
     <section className="hero" id="hero" ref={ref} aria-label="Hero">
       <div className="shell">
-        <div className="hero__grid">
-          <div>
-            <p className="hero__handle" data-hero>
-              {identity.handle}
-            </p>
-            <h1 className="hero__title font-display" data-hero>
-              <em>UiuX 디자이너,</em>
-              <span>{identity.name}</span>
-            </h1>
-            <div className="hero__rule" data-hero />
-            <p className="hero__lead" data-hero>
-              {identity.oneLiner}
-            </p>
-          </div>
-          <figure className="hero__figure" data-hero>
-            <img
-              src={`${import.meta.env.BASE_URL}portrait.png`}
-              alt="Open Peeps 스타일 프로필 일러스트"
-              width={280}
-              height={238}
-            />
-          </figure>
+        <div className="hero__content">
+          <p className="hero__handle" data-hero>
+            {identity.handle}
+          </p>
+          <h1 className="hero__title font-display" data-hero>
+            <em>UiuX 디자이너,</em>
+            <span>{identity.name}</span>
+          </h1>
+          <div className="hero__rule" data-hero />
+          <p className="hero__lead" data-hero>
+            {identity.oneLiner}
+          </p>
         </div>
         <div className="hero__meta" data-hero>
           <span>Portfolio / 2026</span>

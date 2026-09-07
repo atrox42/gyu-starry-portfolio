@@ -59,10 +59,6 @@ export const identity = {
   instagramUrl: "https://www.instagram.com/gyu.starry/",
   blogUrl: "https://blog.naver.com/acgwang",
   year: 2026,
-  illustrationCredit: {
-    label: "Open Peeps",
-    url: "https://www.openpeeps.com/",
-  },
 } as const;
 
 export const navItems: NavItem[] = [
