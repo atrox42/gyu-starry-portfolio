@@ -17,10 +17,7 @@ export function Footer() {
         </div>
         <p className="footer__seo">{seoBlurb}</p>
         <p className="footer__copy">
-          © {identity.handle} {identity.year} · Profile Illustration by{" "}
-          <a href={identity.illustrationCredit.url} target="_blank" rel="noreferrer">
-            {identity.illustrationCredit.label}
-          </a>
+          © {identity.handle} {identity.year}
         </p>
       </div>
     </footer>
