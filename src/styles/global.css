@@ -335,7 +335,7 @@ a:focus-visible {
 }
 
 .hero__content {
-  max-width: 18em;
+  display: block;
 }
 
 .hero__handle {
