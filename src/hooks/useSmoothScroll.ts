@@ -21,6 +21,10 @@ export function useSmoothScroll(): void {
       ScrollTrigger.update();
       window.dispatchEvent(new Event("portfolio:scroll"));
     });
+    const lock = () => lenis.stop();
+    const unlock = () => lenis.start();
+    window.addEventListener("portfolio:lock-scroll", lock);
+    window.addEventListener("portfolio:unlock-scroll", unlock);
     const ticker = (time: number) => {
       lenis.raf(time * 1000);
     };
@@ -28,6 +32,8 @@ export function useSmoothScroll(): void {
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      window.removeEventListener("portfolio:lock-scroll", lock);
+      window.removeEventListener("portfolio:unlock-scroll", unlock);
       gsap.ticker.remove(ticker);
       lenis.destroy();
     };

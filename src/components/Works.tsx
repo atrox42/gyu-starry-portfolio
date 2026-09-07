@@ -1,33 +1,57 @@
-import { Link } from "react-router-dom";
-import { workGroups, worksBridge, type WorkItem } from "../data/portfolio";
+import { useState } from "react";
+import {
+  workGroups,
+  workSrc,
+  worksBridge,
+  type WorkItem,
+} from "../data/portfolio";
 import { Reveal } from "./Reveal";
+import { WorkLightbox } from "./WorkLightbox";
 
-function WorkRow({ item, index }: { item: WorkItem; index: number }) {
+function WorkCard({
+  item,
+  onOpen,
+}: {
+  item: WorkItem;
+  onOpen: () => void;
+}) {
+  const cover = workSrc(item.thumb);
+
   return (
-    <Link className="work-row" to={`/work/${item.slug}`}>
-      <span className="work-row__index">{String(index + 1).padStart(2, "0")}</span>
-      <div>
-        <p className="work-row__client">[{item.client}]</p>
-        <h3 className="work-row__title font-display">{item.title}</h3>
+    <button
+      className="work-card"
+      type="button"
+      onClick={onOpen}
+      aria-label={`${item.client} ${item.title} 보기`}
+    >
+      <span className="work-card__cover">
+        <img src={cover} alt="" loading="lazy" decoding="async" />
+      </span>
+      <span className="work-card__body">
+        <span className="work-card__client">[{item.client}]</span>
+        <span className="work-card__title font-display">{item.title}</span>
         {item.tags.length > 0 ? (
-          <div className="work-row__tags">
+          <span className="work-card__tags">
             {item.tags.map((tag) => (
               <span className="pill" key={tag}>
                 {tag}
               </span>
             ))}
-          </div>
+          </span>
         ) : null}
-      </div>
-      <span className="work-row__arrow" aria-hidden="true">
-        <span className="work-row__hint">보기</span>
-        →
       </span>
-    </Link>
+    </button>
   );
 }
 
 export function Works() {
+  const [open, setOpen] = useState<{ slug: string; index: number } | null>(
+    null,
+  );
+  const active = open
+    ? workGroups.flatMap((group) => group.items).find((item) => item.slug === open.slug)
+    : undefined;
+
   return (
     <section className="section" id="works">
       <div className="shell">
@@ -40,12 +64,26 @@ export function Works() {
             <Reveal>
               <h2 className="work-group__label">{group.label}</h2>
             </Reveal>
-            {group.items.map((item, index) => (
-              <WorkRow item={item} index={index} key={item.slug} />
-            ))}
+            <div className="work-grid">
+              {group.items.map((item) => (
+                <WorkCard
+                  item={item}
+                  key={item.slug}
+                  onOpen={() => setOpen({ slug: item.slug, index: 0 })}
+                />
+              ))}
+            </div>
           </div>
         ))}
       </div>
+      {active && open ? (
+        <WorkLightbox
+          work={active}
+          index={open.index}
+          onClose={() => setOpen(null)}
+          onIndex={(index) => setOpen({ slug: active.slug, index })}
+        />
+      ) : null}
     </section>
   );
 }
