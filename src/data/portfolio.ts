@@ -54,7 +54,7 @@ export const identity = {
   heroTitle: "UiuX 디자이너, 문규석",
   role: "UiuX 디자이너",
   oneLiner:
-    "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/시각시스템)까지 연결할 수 있는 UX/UI 디자이너",
+    "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/비주얼 가이드)까지 연결할 수 있는 UX/UI 디자이너",
   email: "atrox42@gmail.com",
   instagramUrl: "https://www.instagram.com/gyu.starry/",
   blogUrl: "https://blog.naver.com/acgwang",
@@ -75,9 +75,9 @@ export const navItems: NavItem[] = [
 
 export const intro = {
   greeting: "안녕하세요.",
-  lead: "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/시각시스템)까지 연결할 수 있는 UX/UI 디자이너입니다",
+  lead: "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/비주얼 가이드)까지 연결할 수 있는 UX/UI 디자이너입니다",
   leadEmphasis:
-    "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/시각시스템)까지 연결할 수 있는 UX/UI 디자이너",
+    "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/비주얼 가이드)까지 연결할 수 있는 UX/UI 디자이너",
   paragraphs: [
     "운영 어드민, 키오스크, 앱 등 다양한 접점에서 사용자 흐름과 UI 기준을 일관되게 설계합니다.",
     "브랜드가 채널별로 흔들리지 않도록 톤앤매너와 UI 스타일 기준을 정리하고, 디자인 시스템으로 재사용 가능한 구조를 만드는 작업을 해왔습니다.",
