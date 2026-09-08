@@ -80,8 +80,8 @@ function InstagramGrid({
             <img
               src={workSrc(post.thumb)}
               alt=""
-              width={640}
-              height={640}
+              width={1080}
+              height={1080}
               loading="lazy"
               decoding="async"
             />
@@ -101,28 +101,30 @@ function BlogPostCard({ post }: { post: PresenceArticle }) {
       rel="noreferrer"
     >
       {post.thumb ? (
-        <span className="blog-post__thumb">
+        <span className="blog-post__cover">
           <img
             src={workSrc(post.thumb)}
             alt=""
-            width={640}
-            height={640}
+            width={1080}
+            height={1080}
             loading="lazy"
             decoding="async"
           />
         </span>
       ) : null}
       <span className="blog-post__body">
-        <span className="blog-post__title">{post.title}</span>
+        <span className="blog-post__kicker">최근 글</span>
+        <span className="blog-post__title font-display">{post.title}</span>
         {post.excerpt ? (
           <span className="blog-post__excerpt">{post.excerpt}</span>
         ) : null}
+        <span className="presence__more">「더보기」</span>
       </span>
     </a>
   );
 }
 
-function MoreLink({ href, label }: { href: string; label: string }) {
+function MoreLink({ href }: { href: string }) {
   return (
     <a
       className="presence__more"
@@ -130,7 +132,7 @@ function MoreLink({ href, label }: { href: string; label: string }) {
       target="_blank"
       rel="noreferrer"
     >
-      {label}
+      「더보기」
     </a>
   );
 }
@@ -154,21 +156,20 @@ export function Presence() {
                 />
               ) : null}
               {channel.id === "instagram" && channel.url ? (
-                <MoreLink href={channel.url} label="「더보기」" />
+                <MoreLink href={channel.url} />
               ) : null}
               {channel.quote ? (
-                <p className="quote">“{channel.quote}”</p>
+                <p className="quote">“{channel.quote.trim()}”</p>
               ) : null}
-              <div className="presence__copy">
-                {channel.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+              {channel.paragraphs.length > 0 ? (
+                <div className="presence__copy">
+                  {channel.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              ) : null}
               {channel.featuredPost ? (
                 <BlogPostCard post={channel.featuredPost} />
-              ) : null}
-              {channel.id === "blog" && channel.url ? (
-                <MoreLink href={channel.url} label="「더보기」" />
               ) : null}
             </Reveal>
           ))}
