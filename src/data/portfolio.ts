@@ -144,7 +144,7 @@ export const presence = {
       id: "instagram",
       label: "Instagram",
       url: identity.instagramUrl,
-      quote: " 아마도 50대에는 오지의 탐험가가 되어있을 거 같은데요? ",
+      quote: "아마도 50대에는 오지의 탐험가가 되어있을 거 같은데요?",
       paragraphs: [
         "등산·트레일 러닝·트래킹을 다니며 입은 아웃핏과, 실제로 쓰는 아웃도어 아이템을 소개합니다.",
         "한 장의 사진에서도 장비가 어떻게 쓰이는지, 코디가 어떤지 보이도록 담습니다.",
