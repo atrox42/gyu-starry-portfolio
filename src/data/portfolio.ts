@@ -359,7 +359,7 @@ export const tools: Tool[] = [
   },
 ];
 
-export const certificate = "시각디자이너산업기사";
+export const certificate = "시각디자이너 산업기사";
 
 export const seoBlurb =
   "This link introduces the self-introduction and portfolio of a designer, as well as a blog link. @GYU.STARRY is interested in hiking and ACG, and has works such as Sellebot Cash, Greenlight, Only1, Sode1, Hypermeta, Bmealsig, Covyn, JAMPLANET, PULLUP, VGENCY. Additionally, the blog introduces emotional cafes.";
