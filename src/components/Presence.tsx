@@ -17,41 +17,49 @@ function formatCount(value: number): string {
   return value.toLocaleString("en-US");
 }
 
+function displayHostPath(url: string): string {
+  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+}
+
 function ChannelProfile({ channel }: { channel: PresenceChannel }) {
   const profile = channel.profile;
   if (!profile || !channel.url) return null;
 
   return (
-    <a
-      className="ig-profile"
-      href={channel.url}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={`${profile.handle} Instagram 프로필`}
-    >
-      <span className="ig-profile__avatar-wrap">
-        <img
-          className="ig-profile__avatar"
-          src={workSrc(profile.avatar)}
-          alt=""
-          width={160}
-          height={160}
-          decoding="async"
-        />
-      </span>
-      <span className="ig-profile__body">
-        <span className="ig-profile__name">{profile.displayName}</span>
-        <span className="ig-profile__handle">{profile.handle}</span>
-        <span className="ig-profile__stats">
-          {profileStats(profile).map((stat) => (
-            <span className="ig-profile__stat" key={stat.label}>
-              <span className="ig-profile__count">{formatCount(stat.value)}</span>
-              <span className="ig-profile__label">{stat.label}</span>
-            </span>
-          ))}
+    <div className="ig-profile">
+      <div className="ig-profile__header">
+        <span className="ig-profile__avatar-wrap">
+          <img
+            className="ig-profile__avatar"
+            src={workSrc(profile.avatar)}
+            alt=""
+            width={160}
+            height={160}
+            decoding="async"
+          />
         </span>
-      </span>
-    </a>
+        <span className="ig-profile__body">
+          <span className="ig-profile__name">{profile.displayName}</span>
+          <span className="ig-profile__handle">{profile.handle}</span>
+          <span className="ig-profile__stats">
+            {profileStats(profile).map((stat) => (
+              <span className="ig-profile__stat" key={stat.label}>
+                <span className="ig-profile__count">{formatCount(stat.value)}</span>
+                <span className="ig-profile__label">{stat.label}</span>
+              </span>
+            ))}
+          </span>
+          <a
+            className="ig-profile__link"
+            href={channel.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {displayHostPath(channel.url)}
+          </a>
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -75,14 +83,14 @@ export function Presence() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              {channel.url ? (
+              {channel.url && !channel.profile ? (
                 <a
                   className="channel__link"
                   href={channel.url}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {channel.url.replace("https://", "")} ↗
+                  {displayHostPath(channel.url)} ↗
                 </a>
               ) : null}
             </Reveal>
