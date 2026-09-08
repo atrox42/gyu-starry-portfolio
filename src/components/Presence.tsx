@@ -2,6 +2,8 @@ import {
   presence,
   workSrc,
   type PresenceChannel,
+  type PresenceFeatured,
+  type PresencePost,
   type PresenceProfile,
 } from "../data/portfolio";
 import { Reveal } from "./Reveal";
@@ -17,13 +19,9 @@ function formatCount(value: number): string {
   return value.toLocaleString("en-US");
 }
 
-function displayHostPath(url: string): string {
-  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
-}
-
 function ChannelProfile({ channel }: { channel: PresenceChannel }) {
   const profile = channel.profile;
-  if (!profile || !channel.url) return null;
+  if (!profile) return null;
 
   return (
     <div className="ig-profile">
@@ -49,17 +47,115 @@ function ChannelProfile({ channel }: { channel: PresenceChannel }) {
               </span>
             ))}
           </span>
-          <a
-            className="ig-profile__link"
-            href={channel.url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {displayHostPath(channel.url)}
-          </a>
         </span>
       </div>
     </div>
+  );
+}
+
+function InstagramGrid({
+  posts,
+  fallbackUrl,
+}: {
+  posts: readonly PresencePost[];
+  fallbackUrl?: string;
+}) {
+  if (posts.length === 0) return null;
+
+  return (
+    <div className="ig-grid" role="list" aria-label="최근 인스타그램 게시물">
+      {posts.map((post, index) => {
+        const href = post.url || fallbackUrl;
+        const className = [
+          "ig-grid__cell",
+          post.thumb ? "" : "is-empty",
+          post.isVideo ? "is-video" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+        const body = post.thumb ? (
+          <img
+            src={workSrc(post.thumb)}
+            alt=""
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <span className="ig-grid__placeholder"> </span>
+        );
+
+        if (!href) {
+          return (
+            <div className={className} key={post.thumb || index} role="listitem">
+              {body}
+            </div>
+          );
+        }
+
+        return (
+          <a
+            className={className}
+            href={href}
+            key={post.thumb || href}
+            role="listitem"
+            target="_blank"
+            rel="noreferrer"
+            aria-label={
+              post.isVideo ? "인스타그램 릴스 보기" : "인스타그램 게시물 보기"
+            }
+          >
+            {body}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function FeaturedPost({ post }: { post: PresenceFeatured }) {
+  return (
+    <a
+      className="blog-feature"
+      href={post.url}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {post.thumb ? (
+        <span className="blog-feature__cover">
+          <img
+            src={workSrc(post.thumb)}
+            alt=""
+            width={743}
+            height={743}
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+      ) : null}
+      <span className="blog-feature__body">
+        <span className="blog-feature__title">{post.title}</span>
+        {post.excerpt ? (
+          <span className="blog-feature__excerpt">{post.excerpt}</span>
+        ) : null}
+      </span>
+    </a>
+  );
+}
+
+function MoreLink({ channel }: { channel: PresenceChannel }) {
+  if (!channel.url) return null;
+
+  return (
+    <a
+      className="channel__more"
+      href={channel.url}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {channel.moreLabel ?? "더보기"}
+    </a>
   );
 }
 
@@ -83,16 +179,11 @@ export function Presence() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              {channel.url && !channel.profile ? (
-                <a
-                  className="channel__link"
-                  href={channel.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {displayHostPath(channel.url)} ↗
-                </a>
+              {channel.posts ? (
+                <InstagramGrid posts={channel.posts} fallbackUrl={channel.url} />
               ) : null}
+              {channel.featured ? <FeaturedPost post={channel.featured} /> : null}
+              <MoreLink channel={channel} />
             </Reveal>
           ))}
         </div>
