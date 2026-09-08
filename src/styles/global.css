@@ -1218,8 +1218,7 @@ em.mark {
   .presence__grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto auto;
-    column-gap: 48px;
-    row-gap: 0;
+    gap: 0 48px;
   }
 
   .channel {

@@ -134,51 +134,53 @@ export function Presence() {
         <Reveal>
           <p className="kicker">02 — Presence</p>
         </Reveal>
-        <div className="presence__grid">
-          {presence.channels.map((channel: PresenceChannel) => {
-            const columns = channel.id === "blog" ? 2 : 3;
-            const fallback =
-              channel.url ??
-              (channel.id === "blog"
-                ? identity.blogUrl
-                : identity.instagramUrl);
+        <Reveal>
+          <div className="presence__grid">
+            {presence.channels.map((channel: PresenceChannel) => {
+              const columns = channel.id === "blog" ? 2 : 3;
+              const fallback =
+                channel.url ??
+                (channel.id === "blog"
+                  ? identity.blogUrl
+                  : identity.instagramUrl);
 
-            return (
-              <Reveal key={channel.id} className={`channel channel--${channel.id}`}>
-                <h3>{channel.label}</h3>
-                <div className="channel__mast">
-                  <ChannelProfile channel={channel} />
-                  {!channel.profile && channel.paragraphs.length > 0 ? (
-                    <div className="presence__copy">
-                      {channel.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
+              return (
+                <div key={channel.id} className={`channel channel--${channel.id}`}>
+                  <h3>{channel.label}</h3>
+                  <div className="channel__mast">
+                    <ChannelProfile channel={channel} />
+                    {!channel.profile && channel.paragraphs.length > 0 ? (
+                      <div className="presence__copy">
+                        {channel.paragraphs.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                  {channel.posts && channel.posts.length > 0 ? (
+                    <ChannelStage
+                      posts={channel.posts}
+                      url={fallback}
+                      columns={columns}
+                    />
                   ) : null}
+                  <div className="channel__below">
+                    {channel.quote ? (
+                      <p className="quote">“{channel.quote.trim()}”</p>
+                    ) : null}
+                    {channel.profile && channel.paragraphs.length > 0 ? (
+                      <div className="presence__copy">
+                        {channel.paragraphs.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
-                {channel.posts && channel.posts.length > 0 ? (
-                  <ChannelStage
-                    posts={channel.posts}
-                    url={fallback}
-                    columns={columns}
-                  />
-                ) : null}
-                <div className="channel__below">
-                  {channel.quote ? (
-                    <p className="quote">“{channel.quote.trim()}”</p>
-                  ) : null}
-                  {channel.profile && channel.paragraphs.length > 0 ? (
-                    <div className="presence__copy">
-                      {channel.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </Reveal>
         <Reveal className="why">
           <p className="kicker">Why it matters</p>
           {presence.whyItMatters.map((paragraph) => (
