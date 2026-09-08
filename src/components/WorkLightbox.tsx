@@ -15,6 +15,7 @@ export function WorkLightbox({
   onIndex,
 }: WorkLightboxProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
   const images = work.images;
   const current = images[index];
   const total = images.length;
@@ -43,6 +44,10 @@ export function WorkLightbox({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [index, onClose, onIndex, total]);
+
+  useEffect(() => {
+    frameRef.current?.scrollTo(0, 0);
+  }, [index]);
 
   return (
     <div
@@ -82,11 +87,13 @@ export function WorkLightbox({
             ←
           </button>
         ) : null}
-        {current ? (
-          <img src={workSrc(current)} alt={`${workLabel(work)} ${index + 1}`} />
-        ) : (
-          <div className="lightbox__empty">이미지가 곧 올라옵니다.</div>
-        )}
+        <div className="lightbox__frame" ref={frameRef}>
+          {current ? (
+            <img src={workSrc(current)} alt={`${workLabel(work)} ${index + 1}`} />
+          ) : (
+            <div className="lightbox__empty">이미지가 곧 올라옵니다.</div>
+          )}
+        </div>
         {total > 1 ? (
           <button
             className="lightbox__nav lightbox__nav--next"

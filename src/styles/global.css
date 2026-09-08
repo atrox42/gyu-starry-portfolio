@@ -717,17 +717,24 @@ em.mark {
 
 .lightbox__stage {
   display: grid;
-  place-items: center;
   min-height: 0;
   position: relative;
 }
 
-.lightbox__stage img {
+.lightbox__frame {
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.lightbox__frame img {
+  display: block;
+  width: 100%;
   max-width: 100%;
-  max-height: min(72vh, 860px);
-  width: auto;
   height: auto;
-  object-fit: contain;
   background: #111;
 }
 
@@ -738,6 +745,7 @@ em.mark {
 .lightbox__nav {
   position: absolute;
   top: 50%;
+  z-index: 2;
   transform: translateY(-50%);
   width: 44px;
   height: 44px;
