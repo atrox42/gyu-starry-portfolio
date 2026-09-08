@@ -1,8 +1,11 @@
 import {
+  identity,
   presence,
   workSrc,
+  type PresenceArticle,
   type PresenceChannel,
   type PresenceProfile,
+  type PresenceThumb,
 } from "../data/portfolio";
 import { Reveal } from "./Reveal";
 
@@ -17,13 +20,9 @@ function formatCount(value: number): string {
   return value.toLocaleString("en-US");
 }
 
-function displayHostPath(url: string): string {
-  return url.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
-}
-
 function ChannelProfile({ channel }: { channel: PresenceChannel }) {
   const profile = channel.profile;
-  if (!profile || !channel.url) return null;
+  if (!profile) return null;
 
   return (
     <div className="ig-profile">
@@ -49,17 +48,90 @@ function ChannelProfile({ channel }: { channel: PresenceChannel }) {
               </span>
             ))}
           </span>
-          <a
-            className="ig-profile__link"
-            href={channel.url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {displayHostPath(channel.url)}
-          </a>
         </span>
       </div>
     </div>
+  );
+}
+
+function InstagramGrid({
+  posts,
+  fallbackUrl,
+}: {
+  posts: readonly PresenceThumb[];
+  fallbackUrl: string;
+}) {
+  if (posts.length === 0) return null;
+
+  return (
+    <div className="ig-grid" role="list">
+      {posts.map((post, index) => {
+        const href = post.url ?? fallbackUrl;
+        return (
+          <a
+            className={post.isVideo ? "ig-grid__cell is-video" : "ig-grid__cell"}
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            key={post.thumb}
+            role="listitem"
+            aria-label={`Instagram 게시물 ${index + 1}`}
+          >
+            <img
+              src={workSrc(post.thumb)}
+              alt=""
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function BlogPostCard({ post }: { post: PresenceArticle }) {
+  return (
+    <a
+      className="blog-post"
+      href={post.url}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {post.thumb ? (
+        <span className="blog-post__thumb">
+          <img
+            src={workSrc(post.thumb)}
+            alt=""
+            width={640}
+            height={640}
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+      ) : null}
+      <span className="blog-post__body">
+        <span className="blog-post__title">{post.title}</span>
+        {post.excerpt ? (
+          <span className="blog-post__excerpt">{post.excerpt}</span>
+        ) : null}
+      </span>
+    </a>
+  );
+}
+
+function MoreLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      className="presence__more"
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {label}
+    </a>
   );
 }
 
@@ -75,6 +147,15 @@ export function Presence() {
             <Reveal key={channel.id} className="channel">
               <h3>{channel.label}</h3>
               <ChannelProfile channel={channel} />
+              {channel.posts && channel.posts.length > 0 ? (
+                <InstagramGrid
+                  posts={channel.posts}
+                  fallbackUrl={channel.url ?? identity.instagramUrl}
+                />
+              ) : null}
+              {channel.id === "instagram" && channel.url ? (
+                <MoreLink href={channel.url} label="「더보기」" />
+              ) : null}
               {channel.quote ? (
                 <p className="quote">“{channel.quote}”</p>
               ) : null}
@@ -83,15 +164,11 @@ export function Presence() {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              {channel.url && !channel.profile ? (
-                <a
-                  className="channel__link"
-                  href={channel.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {displayHostPath(channel.url)} ↗
-                </a>
+              {channel.featuredPost ? (
+                <BlogPostCard post={channel.featuredPost} />
+              ) : null}
+              {channel.id === "blog" && channel.url ? (
+                <MoreLink href={channel.url} label="「더보기」" />
               ) : null}
             </Reveal>
           ))}
