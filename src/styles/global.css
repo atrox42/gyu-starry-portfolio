@@ -708,7 +708,7 @@ em.mark {
   width: fit-content;
   margin-top: 12px;
   color: var(--text);
-  font-size: clamp(16px, 1.8vw, 20px);
+  font-size: clamp(14px, 1.5vw, 17px);
   font-weight: 700;
   letter-spacing: var(--tracking);
 }

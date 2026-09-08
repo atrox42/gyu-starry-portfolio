@@ -146,8 +146,7 @@ export const presence = {
       url: identity.instagramUrl,
       quote: "아마도 50대에는 오지의 탐험가가 되어있을 거 같은데요?",
       paragraphs: [
-        "등산·트레일 러닝·트래킹을 다니며 입은 아웃핏과, 실제로 쓰는 아웃도어 아이템을 소개합니다.",
-        "한 장의 사진에서도 장비가 어떻게 쓰이는지, 코디가 어떤지 보이도록 담습니다.",
+        "등산·트레일 러닝·트래킹을 다니며 입은 아웃핏과, 실제로 쓰는 아웃도어 아이템을 소개합니다. 한 장의 사진에서도 장비가 어떻게 쓰이는지, 코디가 어떤지 보이도록 담습니다.",
       ],
       // Public Instagram snapshot, 2026-09-08 (web_profile_info).
       profile: {
@@ -204,8 +203,7 @@ export const presence = {
       label: "Blog",
       url: identity.blogUrl,
       paragraphs: [
-        "ACG·아웃도어 아이템과 산행·트레일에서 입은 아웃핏을 소개하고, 다녀온 길을 기록합니다.",
-        "실제로 써 본 느낌과, 그 아이템이 어떤 길에서 어떻게 쓰였는지를 함께 남깁니다.",
+        "ACG·아웃도어 아이템과 산행·트레일에서 입은 아웃핏을 소개하고, 다녀온 길을 기록합니다. 실제로 써 본 느낌과, 그 아이템이 어떤 길에서 어떻게 쓰였는지를 함께 남깁니다.",
       ],
       // Four most recent public RSS items, 2026-09-08 (rss.blog.naver.com/acgwang.xml).
       articles: [
