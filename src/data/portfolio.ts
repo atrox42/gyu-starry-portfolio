@@ -10,12 +10,22 @@ export type FocusArea = {
   body: string;
 };
 
+export type PresenceProfile = {
+  handle: string;
+  displayName: string;
+  avatar: string;
+  posts: number;
+  followers: number;
+  following: number;
+};
+
 export type PresenceChannel = {
   id: string;
   label: string;
   url?: string;
   quote?: string;
   paragraphs: readonly string[];
+  profile?: PresenceProfile;
 };
 
 export type WorkGroup = "recent" | "uiux" | "bibx";
@@ -124,6 +134,15 @@ export const presence = {
         "ACG와 등산 및 트래킹 트레일 러닝을 중심으로 스타일링과 정보 정리를 꾸준히 기록합니다.",
         "한 장의 이미지에서 메시지가 명확히 전달되도록 구성, 톤앤매너, 시각 요소의 일관성을 유지하는 방식으로 운영합니다.",
       ],
+      // Public Instagram snapshot, 2026-09-08 (web_profile_info).
+      profile: {
+        handle: identity.handle,
+        displayName: identity.name,
+        avatar: "presence/instagram-avatar.jpg",
+        posts: 227,
+        followers: 5216,
+        following: 709,
+      },
     },
     {
       id: "blog",

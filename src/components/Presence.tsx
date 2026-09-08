@@ -1,5 +1,59 @@
-import { presence } from "../data/portfolio";
+import {
+  presence,
+  workSrc,
+  type PresenceChannel,
+  type PresenceProfile,
+} from "../data/portfolio";
 import { Reveal } from "./Reveal";
+
+const profileStats = (profile: PresenceProfile) =>
+  [
+    { label: "Posts", value: profile.posts },
+    { label: "Followers", value: profile.followers },
+    { label: "Following", value: profile.following },
+  ] as const;
+
+function formatCount(value: number): string {
+  return value.toLocaleString("en-US");
+}
+
+function ChannelProfile({ channel }: { channel: PresenceChannel }) {
+  const profile = channel.profile;
+  if (!profile || !channel.url) return null;
+
+  return (
+    <a
+      className="ig-profile"
+      href={channel.url}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`${profile.handle} Instagram 프로필`}
+    >
+      <span className="ig-profile__avatar-wrap">
+        <img
+          className="ig-profile__avatar"
+          src={workSrc(profile.avatar)}
+          alt=""
+          width={160}
+          height={160}
+          decoding="async"
+        />
+      </span>
+      <span className="ig-profile__body">
+        <span className="ig-profile__name">{profile.displayName}</span>
+        <span className="ig-profile__handle">{profile.handle}</span>
+        <span className="ig-profile__stats">
+          {profileStats(profile).map((stat) => (
+            <span className="ig-profile__stat" key={stat.label}>
+              <span className="ig-profile__count">{formatCount(stat.value)}</span>
+              <span className="ig-profile__label">{stat.label}</span>
+            </span>
+          ))}
+        </span>
+      </span>
+    </a>
+  );
+}
 
 export function Presence() {
   return (
@@ -12,6 +66,7 @@ export function Presence() {
           {presence.channels.map((channel) => (
             <Reveal key={channel.id} className="channel">
               <h3>{channel.label}</h3>
+              <ChannelProfile channel={channel} />
               {channel.quote ? (
                 <p className="quote">“{channel.quote}”</p>
               ) : null}
