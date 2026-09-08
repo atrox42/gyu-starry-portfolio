@@ -144,7 +144,7 @@ export function Presence() {
                 : identity.instagramUrl);
 
             return (
-              <Reveal key={channel.id} className="channel">
+              <Reveal key={channel.id} className={`channel channel--${channel.id}`}>
                 <h3>{channel.label}</h3>
                 <div className="channel__mast">
                   <ChannelProfile channel={channel} />

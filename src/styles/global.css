@@ -1223,9 +1223,46 @@ em.mark {
   }
 
   .channel {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 4;
+    display: contents;
+    padding: 0;
+    border: 0;
+  }
+
+  .channel h3 {
+    padding-top: 32px;
+    margin-bottom: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .channel--instagram h3,
+  .channel--instagram .channel__mast,
+  .channel--instagram .channel__stage,
+  .channel--instagram .channel__below {
+    grid-column: 1;
+  }
+
+  .channel--blog h3,
+  .channel--blog .channel__mast,
+  .channel--blog .channel__stage,
+  .channel--blog .channel__below {
+    grid-column: 2;
+  }
+
+  .channel h3 {
+    grid-row: 1;
+  }
+
+  .channel__mast {
+    grid-row: 2;
+  }
+
+  .channel__stage {
+    grid-row: 3;
+  }
+
+  .channel__below {
+    grid-row: 4;
+    padding-bottom: 8px;
   }
 
   .work-grid {
