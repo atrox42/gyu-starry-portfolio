@@ -9,6 +9,15 @@ type Particle = {
 
 const TRAIL_CAP = 36;
 const HOVER_SELECTOR = "a, button, .work-card";
+const ACCENT_RGB_FALLBACK = "255, 76, 0";
+
+function accentFill(alpha: number): string {
+  const rgb =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--accent-rgb")
+      .trim() || ACCENT_RGB_FALLBACK;
+  return `rgba(${rgb}, ${alpha})`;
+}
 
 function canUseCursor(): boolean {
   return (
@@ -126,7 +135,7 @@ export function Cursor() {
           if (particle.life <= 0) continue;
           const radius = 2.2 + particle.life * 4.2;
           ctx.beginPath();
-          ctx.fillStyle = `rgba(255, 76, 0, ${particle.life * 0.72})`;
+          ctx.fillStyle = accentFill(particle.life * 0.72);
           ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
           ctx.fill();
         }

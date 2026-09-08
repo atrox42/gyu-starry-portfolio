@@ -3,7 +3,8 @@
 :root {
   --bg: #0a0a0a;
   --bg-raised: #111111;
-  --accent: #ff4c00;
+  --accent: #FF4C00;
+  --accent-rgb: 255, 76, 0;
   --text: #f3eee6;
   --muted: #8b8680;
   --dim: #5c5852;
@@ -16,6 +17,12 @@
   --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
     sans-serif;
   --tracking: -0.03em;
+}
+
+@supports (color: color(srgb 1 0 0)) {
+  :root {
+    --accent: color(srgb 1 0.298039 0);
+  }
 }
 
 *,
@@ -397,6 +404,12 @@ a:focus-visible {
 
 .hero__scroll {
   color: var(--accent);
+}
+
+@media (max-width: 767px) {
+  .hero__scroll {
+    display: none;
+  }
 }
 
 .intro__lead {
@@ -825,8 +838,8 @@ em.mark {
 
 .work-card:hover .work-card__cover,
 .work-card:focus-visible .work-card__cover {
-  border-color: #ff4c00;
-  outline: 2px solid #ff4c00;
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
 
@@ -834,7 +847,7 @@ em.mark {
   display: grid;
   place-items: center;
   background:
-    linear-gradient(135deg, rgba(255, 76, 0, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(var(--accent-rgb), 0.16), transparent 42%),
     var(--bg-raised);
 }
 
