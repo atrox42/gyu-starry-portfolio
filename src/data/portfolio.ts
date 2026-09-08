@@ -23,13 +23,7 @@ export type PresenceThumb = {
   thumb: string;
   url?: string;
   isVideo?: boolean;
-};
-
-export type PresenceArticle = {
-  title: string;
-  url: string;
-  thumb?: string;
-  excerpt?: string;
+  title?: string;
 };
 
 export type PresenceChannel = {
@@ -40,7 +34,6 @@ export type PresenceChannel = {
   paragraphs: readonly string[];
   profile?: PresenceProfile;
   posts?: readonly PresenceThumb[];
-  featuredPost?: PresenceArticle;
 };
 
 export type WorkGroup = "recent" | "uiux" | "bibx";
@@ -207,14 +200,29 @@ export const presence = {
         "ACG·아웃도어 아이템과 산행·트레일에서 입은 아웃핏을 소개하고, 다녀온 길을 기록합니다.",
         "실제로 써 본 느낌과, 그 아이템이 어떤 길에서 어떻게 쓰였는지를 함께 남깁니다.",
       ],
-      // Latest public RSS item, 2026-09-08 (rss.blog.naver.com/acgwang.xml).
-      featuredPost: {
-        title: "나이키 ACG 이구아나 베스트 컬리지 그레이 HJ2878-009 리뷰",
-        url: "https://blog.naver.com/acgwang/224264169189",
-        thumb: "presence/blog-latest.jpg",
-        excerpt:
-          "이구아나 답게 변신이 가능한 특이한 베스트이지만 아무도 입는걸 본적없는 베스트입니다.",
-      },
+      // Four latest public RSS items, 2026-09-08 (rss.blog.naver.com/acgwang.xml).
+      posts: [
+        {
+          thumb: "presence/blog-01.jpg",
+          url: "https://blog.naver.com/acgwang/224264169189",
+          title: "나이키 ACG 이구아나 베스트 컬리지 그레이 HJ2878-009 리뷰",
+        },
+        {
+          thumb: "presence/blog-02.jpg",
+          url: "https://blog.naver.com/acgwang/224259800638",
+          title: "나이키 ACG 백팩 데이맥스 25L HJ8178-010 리뷰",
+        },
+        {
+          thumb: "presence/blog-03.jpg",
+          url: "https://blog.naver.com/acgwang/224256019414",
+          title: "나이키 ACG 돌로미티 남성 쇼츠 IF0894-004 리뷰",
+        },
+        {
+          thumb: "presence/blog-04.jpg",
+          url: "https://blog.naver.com/acgwang/224251046327",
+          title: "ACG 파이브 타워스 투 집 오프 팬츠 IF1023-010",
+        },
+      ],
     },
   ] satisfies PresenceChannel[],
 } as const;

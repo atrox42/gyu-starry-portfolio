@@ -2,7 +2,6 @@ import {
   identity,
   presence,
   workSrc,
-  type PresenceArticle,
   type PresenceChannel,
   type PresenceProfile,
   type PresenceThumb,
@@ -54,28 +53,40 @@ function ChannelProfile({ channel }: { channel: PresenceChannel }) {
   );
 }
 
-function InstagramGrid({
+function MediaGrid({
   posts,
   fallbackUrl,
+  columns,
 }: {
   posts: readonly PresenceThumb[];
   fallbackUrl: string;
+  columns: 2 | 3;
 }) {
-  if (posts.length === 0) return null;
-
   return (
-    <div className="ig-grid" role="list">
+    <div
+      className={
+        columns === 2
+          ? "presence-media presence-media--2"
+          : "presence-media presence-media--3"
+      }
+      role="list"
+    >
       {posts.map((post, index) => {
         const href = post.url ?? fallbackUrl;
+        const label = post.title ?? `게시물 ${index + 1}`;
         return (
           <a
-            className={post.isVideo ? "ig-grid__cell is-video" : "ig-grid__cell"}
+            className={
+              post.isVideo
+                ? "presence-media__cell is-video"
+                : "presence-media__cell"
+            }
             href={href}
             target="_blank"
             rel="noreferrer"
             key={post.thumb}
             role="listitem"
-            aria-label={`Instagram 게시물 ${index + 1}`}
+            aria-label={label}
           >
             <img
               src={workSrc(post.thumb)}
@@ -92,48 +103,27 @@ function InstagramGrid({
   );
 }
 
-function BlogPostCard({ post }: { post: PresenceArticle }) {
+function ChannelStage({
+  posts,
+  url,
+  columns,
+}: {
+  posts: readonly PresenceThumb[];
+  url: string;
+  columns: 2 | 3;
+}) {
   return (
-    <a
-      className="blog-post"
-      href={post.url}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {post.thumb ? (
-        <span className="blog-post__cover">
-          <img
-            src={workSrc(post.thumb)}
-            alt=""
-            width={1080}
-            height={1080}
-            loading="lazy"
-            decoding="async"
-          />
-        </span>
-      ) : null}
-      <span className="blog-post__body">
-        <span className="blog-post__kicker">최근 글</span>
-        <span className="blog-post__title font-display">{post.title}</span>
-        {post.excerpt ? (
-          <span className="blog-post__excerpt">{post.excerpt}</span>
-        ) : null}
-        <span className="presence__more">「더보기」</span>
-      </span>
-    </a>
-  );
-}
-
-function MoreLink({ href }: { href: string }) {
-  return (
-    <a
-      className="presence__more"
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-    >
-      「더보기」
-    </a>
+    <div className="channel__stage">
+      <MediaGrid posts={posts} fallbackUrl={url} columns={columns} />
+      <a
+        className="presence__more"
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+      >
+        「더보기」
+      </a>
+    </div>
   );
 }
 
@@ -145,34 +135,49 @@ export function Presence() {
           <p className="kicker">02 — Presence</p>
         </Reveal>
         <div className="presence__grid">
-          {presence.channels.map((channel) => (
-            <Reveal key={channel.id} className="channel">
-              <h3>{channel.label}</h3>
-              <ChannelProfile channel={channel} />
-              {channel.posts && channel.posts.length > 0 ? (
-                <InstagramGrid
-                  posts={channel.posts}
-                  fallbackUrl={channel.url ?? identity.instagramUrl}
-                />
-              ) : null}
-              {channel.id === "instagram" && channel.url ? (
-                <MoreLink href={channel.url} />
-              ) : null}
-              {channel.quote ? (
-                <p className="quote">“{channel.quote.trim()}”</p>
-              ) : null}
-              {channel.paragraphs.length > 0 ? (
-                <div className="presence__copy">
-                  {channel.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
+          {presence.channels.map((channel: PresenceChannel) => {
+            const columns = channel.id === "blog" ? 2 : 3;
+            const fallback =
+              channel.url ??
+              (channel.id === "blog"
+                ? identity.blogUrl
+                : identity.instagramUrl);
+
+            return (
+              <Reveal key={channel.id} className="channel">
+                <h3>{channel.label}</h3>
+                <div className="channel__mast">
+                  <ChannelProfile channel={channel} />
+                  {!channel.profile && channel.paragraphs.length > 0 ? (
+                    <div className="presence__copy">
+                      {channel.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-              {channel.featuredPost ? (
-                <BlogPostCard post={channel.featuredPost} />
-              ) : null}
-            </Reveal>
-          ))}
+                {channel.posts && channel.posts.length > 0 ? (
+                  <ChannelStage
+                    posts={channel.posts}
+                    url={fallback}
+                    columns={columns}
+                  />
+                ) : null}
+                <div className="channel__below">
+                  {channel.quote ? (
+                    <p className="quote">“{channel.quote.trim()}”</p>
+                  ) : null}
+                  {channel.profile && channel.paragraphs.length > 0 ? (
+                    <div className="presence__copy">
+                      {channel.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
         <Reveal className="why">
           <p className="kicker">Why it matters</p>
