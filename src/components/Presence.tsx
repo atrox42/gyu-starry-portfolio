@@ -63,7 +63,7 @@ function MoreLink({ href }: { href: string }) {
       target="_blank"
       rel="noreferrer"
     >
-      「더보기」
+      더보기
     </a>
   );
 }
