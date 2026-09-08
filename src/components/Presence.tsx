@@ -173,15 +173,11 @@ export function Presence() {
           {presence.channels.map((channel) => (
             <Reveal key={channel.id} className="channel">
               <h3>{channel.label}</h3>
-              <div
-                className={
-                  channel.profile
-                    ? "channel__profile"
-                    : "channel__profile is-empty"
-                }
-              >
-                <ChannelProfile channel={channel} />
-              </div>
+              {channel.profile ? (
+                <div className="channel__profile">
+                  <ChannelProfile channel={channel} />
+                </div>
+              ) : null}
               <div className="channel__body">
                 {channel.posts && channel.posts.length > 0 && channel.url ? (
                   <PresenceMedia

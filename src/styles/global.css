@@ -498,7 +498,7 @@ em.mark {
 }
 
 .channel h3 {
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: var(--tracking);
@@ -506,14 +506,11 @@ em.mark {
 
 .channel__profile {
   min-height: 0;
-}
-
-.channel__profile.is-empty {
-  display: none;
+  margin: 0 0 16px;
 }
 
 .ig-profile {
-  margin: 0 0 20px;
+  margin: 0;
   padding: 0;
   max-width: none;
   color: inherit;
@@ -1230,27 +1227,7 @@ em.mark {
 
   .presence__grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
     gap: 48px;
-  }
-
-  .channel {
-    display: grid;
-    grid-template-rows: subgrid;
-    grid-row: span 3;
-    align-items: start;
-  }
-
-  .channel__profile {
-    padding-bottom: 20px;
-  }
-
-  .channel__profile.is-empty {
-    display: block;
-  }
-
-  .ig-profile {
-    margin: 0;
   }
 
   .work-grid {
