@@ -19,6 +19,19 @@ export type PresenceProfile = {
   following: number;
 };
 
+export type PresenceThumb = {
+  thumb: string;
+  url?: string;
+  isVideo?: boolean;
+};
+
+export type PresenceArticle = {
+  title: string;
+  url: string;
+  thumb?: string;
+  excerpt?: string;
+};
+
 export type PresenceChannel = {
   id: string;
   label: string;
@@ -26,6 +39,8 @@ export type PresenceChannel = {
   quote?: string;
   paragraphs: readonly string[];
   profile?: PresenceProfile;
+  posts?: readonly PresenceThumb[];
+  featuredPost?: PresenceArticle;
 };
 
 export type WorkGroup = "recent" | "uiux" | "bibx";
@@ -143,6 +158,46 @@ export const presence = {
         followers: 5216,
         following: 709,
       },
+      posts: [
+        {
+          thumb: "presence/instagram-01.jpg",
+          url: "https://www.instagram.com/reel/Dc4zXavzrRu/",
+          isVideo: true,
+        },
+        {
+          thumb: "presence/instagram-02.jpg",
+          url: "https://www.instagram.com/reel/Dc3CwjFzQgA/",
+          isVideo: true,
+        },
+        {
+          thumb: "presence/instagram-03.jpg",
+          url: "https://www.instagram.com/p/DcGbNkNk9kK/",
+        },
+        {
+          thumb: "presence/instagram-04.jpg",
+          url: "https://www.instagram.com/p/DafaLt7k9G5/",
+        },
+        {
+          thumb: "presence/instagram-05.jpg",
+          url: "https://www.instagram.com/p/DapzYoik9iH/",
+        },
+        {
+          thumb: "presence/instagram-06.jpg",
+          url: "https://www.instagram.com/p/DauzmFLlDDi/",
+        },
+        {
+          thumb: "presence/instagram-07.jpg",
+          url: "https://www.instagram.com/p/DahuVvPEzPV/",
+        },
+        {
+          thumb: "presence/instagram-08.jpg",
+          url: "https://www.instagram.com/p/DWlYltnEXEJ/",
+        },
+        {
+          thumb: "presence/instagram-09.jpg",
+          url: "https://www.instagram.com/p/DVBrdPRkySL/",
+        },
+      ],
     },
     {
       id: "blog",
@@ -152,6 +207,14 @@ export const presence = {
         "ACG·아웃도어 아이템과 산행·트레일에서 입은 아웃핏을 소개하고, 다녀온 길을 기록합니다.",
         "실제로 써 본 느낌과, 그 아이템이 어떤 길에서 어떻게 쓰였는지를 함께 남깁니다.",
       ],
+      // Latest public RSS item, 2026-09-08 (rss.blog.naver.com/acgwang.xml).
+      featuredPost: {
+        title: "나이키 ACG 이구아나 베스트 컬리지 그레이 HJ2878-009 리뷰",
+        url: "https://blog.naver.com/acgwang/224264169189",
+        thumb: "presence/blog-latest.jpg",
+        excerpt:
+          "이구아나 답게 변신이 가능한 특이한 베스트이지만 아무도 입는걸 본적없는 베스트입니다.",
+      },
     },
   ] satisfies PresenceChannel[],
 } as const;
