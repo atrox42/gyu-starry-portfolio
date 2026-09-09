@@ -6,14 +6,12 @@ export function Footer() {
       <div className="shell">
         <p className="kicker">05 — Contact</p>
         <h2 className="footer__title font-display">Contact</h2>
-        <a className="footer__mail" href={`mailto:${identity.email}`}>
-          {identity.email}
-        </a>
+        <p className="footer__mail">{identity.email}</p>
         <div className="footer__links">
           <a href={identity.instagramUrl} target="_blank" rel="noreferrer">
             Instagram {identity.handle}
           </a>
-          <a href={`mailto:${identity.email}`}>Email</a>
+          <span className="footer__email">Email</span>
         </div>
         <p className="footer__seo">{seoBlurb}</p>
         <p className="footer__copy">

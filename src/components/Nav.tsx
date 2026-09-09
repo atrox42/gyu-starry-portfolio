@@ -34,9 +34,7 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a className="nav__mail" href={`mailto:${identity.email}`}>
-          {identity.email}
-        </a>
+        <span className="nav__mail">{identity.email}</span>
         <button
           className={`nav__toggle${open ? " is-open" : ""}`}
           type="button"

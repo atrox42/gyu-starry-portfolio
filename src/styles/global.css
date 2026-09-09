@@ -807,17 +807,31 @@ em.mark {
 }
 
 .work-grid {
+  --work-grid-row-gap: 28px;
+  --work-grid-col-gap: 28px;
   display: grid;
-  gap: 28px;
+  column-gap: var(--work-grid-col-gap);
+  row-gap: 0;
   margin-top: 20px;
+  margin-bottom: calc(-1 * var(--work-grid-row-gap));
 }
 
 .work-card {
   display: grid;
-  gap: 16px;
+  grid-template-rows: auto auto auto auto;
+  align-content: start;
+  row-gap: 0;
+  width: 100%;
   text-align: left;
   color: inherit;
   cursor: pointer;
+}
+
+@supports (grid-template-rows: subgrid) {
+  .work-card {
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+  }
 }
 
 .work-card__cover {
@@ -825,14 +839,18 @@ em.mark {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  margin-bottom: 16px;
   background: var(--bg-raised);
   border: 1px solid var(--line);
   transition: outline-color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
 .work-card__cover img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
   object-position: top center;
 }
@@ -858,11 +876,6 @@ em.mark {
   font-weight: 600;
 }
 
-.work-card__body {
-  display: grid;
-  gap: 6px;
-}
-
 .work-card__client {
   font-size: 13px;
   color: var(--muted);
@@ -870,6 +883,7 @@ em.mark {
 }
 
 .work-card__title {
+  margin-top: 6px;
   font-size: clamp(22px, 3.4vw, 34px);
   font-weight: 700;
   letter-spacing: var(--tracking);
@@ -887,6 +901,11 @@ em.mark {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
+}
+
+.work-card > .work-card__tags {
+  margin-top: 14px;
+  margin-bottom: var(--work-grid-row-gap);
 }
 
 .pill {
@@ -1142,12 +1161,10 @@ em.mark {
 
 .footer__mail {
   display: inline-block;
+  margin: 0;
   font-size: clamp(20px, 3vw, 32px);
   letter-spacing: var(--tracking);
-}
-
-.footer__mail:hover {
-  color: var(--accent);
+  cursor: default;
 }
 
 .footer__links {
@@ -1157,6 +1174,10 @@ em.mark {
   margin: 28px 0 48px;
   color: var(--muted);
   letter-spacing: var(--tracking);
+}
+
+.footer__email {
+  cursor: default;
 }
 
 .footer__links a:hover {
@@ -1245,8 +1266,9 @@ em.mark {
   }
 
   .work-grid {
+    --work-grid-row-gap: 32px;
+    --work-grid-col-gap: 28px;
     grid-template-columns: 1fr 1fr;
-    gap: 32px 28px;
   }
 
   .highlights__grid {
@@ -1257,7 +1279,8 @@ em.mark {
 
 @media (min-width: 1100px) {
   .work-grid {
-    gap: 40px 32px;
+    --work-grid-row-gap: 40px;
+    --work-grid-col-gap: 32px;
   }
 }
 
