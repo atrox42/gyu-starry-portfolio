@@ -80,7 +80,7 @@ export const identity = {
   role: "UiuX 디자이너",
   oneLiner:
     "제품 경험과 브랜드 경험을 함께 설계하고, 브랜딩(BI/비주얼 가이드)까지 연결할 수 있는 UX/UI 디자이너",
-  email: "atrox42@gmail.com",
+  email: "atrox42@naver.com",
   instagramUrl: "https://www.instagram.com/gyu.starry/",
   blogUrl: "https://blog.naver.com/acgwang",
   year: 2026,

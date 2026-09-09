@@ -1161,12 +1161,10 @@ em.mark {
 
 .footer__mail {
   display: inline-block;
+  margin: 0;
   font-size: clamp(20px, 3vw, 32px);
   letter-spacing: var(--tracking);
-}
-
-.footer__mail:hover {
-  color: var(--accent);
+  cursor: default;
 }
 
 .footer__links {
@@ -1176,6 +1174,10 @@ em.mark {
   margin: 28px 0 48px;
   color: var(--muted);
   letter-spacing: var(--tracking);
+}
+
+.footer__email {
+  cursor: default;
 }
 
 .footer__links a:hover {
