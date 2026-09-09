@@ -347,8 +347,6 @@ a:focus-visible {
 .hero > .shell {
   position: relative;
   z-index: 1;
-  width: 100%;
-  justify-self: stretch;
   text-align: left;
 }
 
