@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { identity } from "../data/portfolio";
+import { identity, workSrc } from "../data/portfolio";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 const LEAD_KEEP = "(BI/비주얼 가이드)";
@@ -51,6 +51,22 @@ export function Hero() {
 
   return (
     <section className="hero" id="hero" ref={ref} aria-label="Hero">
+      {!reduced && (
+        <div className="hero__media" aria-hidden="true">
+          <video
+            className="hero__video"
+            src={workSrc("hero/bg-loop.mp4")}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+            disableRemotePlayback
+          />
+          <div className="hero__scrim" />
+        </div>
+      )}
       <div className="shell">
         <div className="hero__content">
           <p className="hero__handle" data-hero>
