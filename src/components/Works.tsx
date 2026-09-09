@@ -27,18 +27,14 @@ function WorkCard({
       <span className="work-card__cover">
         <img src={cover} alt="" loading="lazy" decoding="async" />
       </span>
-      <span className="work-card__body">
-        <span className="work-card__client">[{item.client}]</span>
-        <span className="work-card__title font-display">{item.title}</span>
-        {item.tags.length > 0 ? (
-          <span className="work-card__tags">
-            {item.tags.map((tag) => (
-              <span className="pill" key={tag}>
-                {tag}
-              </span>
-            ))}
+      <span className="work-card__client">[{item.client}]</span>
+      <span className="work-card__title font-display">{item.title}</span>
+      <span className="work-card__tags">
+        {item.tags.map((tag) => (
+          <span className="pill" key={tag}>
+            {tag}
           </span>
-        ) : null}
+        ))}
       </span>
     </button>
   );
