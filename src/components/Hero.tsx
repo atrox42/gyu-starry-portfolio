@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { identity, workSrc } from "../data/portfolio";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
@@ -25,6 +25,7 @@ function renderHeroLead(text: string) {
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = usePrefersReducedMotion();
 
   useLayoutEffect(() => {
@@ -49,24 +50,54 @@ export function Hero() {
     return () => ctx.revert();
   }, [reduced]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+
+    if (reduced) {
+      video.pause();
+      if (video.readyState >= 1) video.currentTime = 0;
+      return;
+    }
+
+    const tryPlay = () => {
+      const play = video.play();
+      if (play) play.catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, [reduced]);
+
   return (
     <section className="hero" id="hero" ref={ref} aria-label="Hero">
-      {!reduced && (
-        <div className="hero__media" aria-hidden="true">
-          <video
-            className="hero__video"
-            src={workSrc("hero/bg-loop.mp4")}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            disablePictureInPicture
-            disableRemotePlayback
-          />
-          <div className="hero__scrim" />
-        </div>
-      )}
+      <div className="hero__media" aria-hidden="true">
+        <video
+          ref={videoRef}
+          className="hero__video"
+          src={workSrc("hero/bg-loop.mp4")}
+          poster={workSrc("hero/bg-poster.jpg")}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+        />
+        <div className="hero__scrim" />
+      </div>
       <div className="shell">
         <div className="hero__content">
           <p className="hero__handle" data-hero>
