@@ -1,10 +1,35 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { identity, workSrc } from "../data/portfolio";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 const LEAD_KEEP = "(BI/비주얼 가이드)";
 const LEAD_PHRASE_BREAK = "설계하고,";
+const HERO_DESKTOP_MQ = "(min-width: 768px)";
+const HERO_LOOP_MOBILE = "hero/bg-loop.mp4";
+const HERO_LOOP_DESKTOP = "hero/bg-loop-desktop.mp4";
+
+function heroLoopSrc(isDesktop: boolean) {
+  return workSrc(isDesktop ? HERO_LOOP_DESKTOP : HERO_LOOP_MOBILE);
+}
+
+function useDesktopHero() {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia(HERO_DESKTOP_MQ).matches
+      : false,
+  );
+
+  useLayoutEffect(() => {
+    const media = window.matchMedia(HERO_DESKTOP_MQ);
+    const sync = () => setIsDesktop(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  return isDesktop;
+}
 
 function renderHeroLead(text: string) {
   const keepAt = text.indexOf(LEAD_KEEP);
@@ -27,6 +52,8 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = usePrefersReducedMotion();
+  const isDesktop = useDesktopHero();
+  const loopSrc = heroLoopSrc(isDesktop);
 
   useLayoutEffect(() => {
     const root = ref.current;
@@ -78,24 +105,34 @@ export function Hero() {
       video.removeEventListener("loadeddata", tryPlay);
       video.removeEventListener("canplay", tryPlay);
     };
-  }, [reduced]);
+  }, [reduced, loopSrc]);
 
   return (
     <section className="hero" id="hero" ref={ref} aria-label="Hero">
       <div className="hero__media" aria-hidden="true">
-        <video
-          ref={videoRef}
-          className="hero__video"
-          src={workSrc("hero/bg-loop.mp4")}
-          poster={workSrc("hero/bg-poster.jpg")}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          disablePictureInPicture
-          disableRemotePlayback
-        />
+        {!reduced && (
+          <video
+            key={loopSrc}
+            ref={videoRef}
+            className="hero__video"
+            src={loopSrc}
+            poster={workSrc("hero/bg-poster.jpg")}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
+          >
+            <source
+              src={workSrc(HERO_LOOP_DESKTOP)}
+              type="video/mp4"
+              media={HERO_DESKTOP_MQ}
+            />
+            <source src={workSrc(HERO_LOOP_MOBILE)} type="video/mp4" />
+          </video>
+        )}
         <div className="hero__scrim" />
       </div>
       <div className="shell">
