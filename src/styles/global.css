@@ -336,16 +336,17 @@ a:focus-visible {
 .hero {
   min-height: 100vh;
   min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: calc(var(--nav-h) + 24px) 0 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: calc(var(--nav-h) + 16px) 0 12vh;
   overflow: hidden;
   position: relative;
+  text-align: left;
 }
 
 .hero > .shell {
-  display: flex;
-  justify-content: center;
   position: relative;
   z-index: 1;
 }
@@ -382,8 +383,8 @@ a:focus-visible {
 }
 
 .hero__content {
-  width: fit-content;
-  max-width: 100%;
+  display: block;
+  text-align: left;
 }
 
 .hero__handle {
@@ -437,15 +438,11 @@ a:focus-visible {
 }
 
 .hero__meta {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 36px;
-  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 24px;
-  margin-top: 0;
+  margin-top: 56px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 11px;
@@ -453,6 +450,7 @@ a:focus-visible {
   letter-spacing: var(--tracking);
   text-transform: uppercase;
   color: var(--dim);
+  text-align: left;
 }
 
 .hero__scroll {
