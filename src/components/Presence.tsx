@@ -173,11 +173,6 @@ export function Presence() {
           {presence.channels.map((channel) => (
             <Reveal key={channel.id} className="channel">
               <h3>{channel.label}</h3>
-              {channel.profile ? (
-                <div className="channel__profile">
-                  <ChannelProfile channel={channel} />
-                </div>
-              ) : null}
               <div className="channel__body">
                 {channel.posts && channel.posts.length > 0 && channel.url ? (
                   <PresenceMedia
@@ -197,6 +192,11 @@ export function Presence() {
                   >
                     <BlogGrid posts={channel.articles} />
                   </PresenceMedia>
+                ) : null}
+                {channel.profile ? (
+                  <div className="channel__profile">
+                    <ChannelProfile channel={channel} />
+                  </div>
                 ) : null}
                 {channel.quote ? (
                   <p className="quote">“{channel.quote.trim()}”</p>

@@ -519,7 +519,7 @@ em.mark {
 
 .channel__profile {
   min-height: 0;
-  margin: 0 0 16px;
+  margin: 20px 0 0;
 }
 
 .ig-profile {
@@ -744,7 +744,8 @@ em.mark {
   color: var(--text);
 }
 
-.presence-media + .presence__copy {
+.presence-media + .presence__copy,
+.channel__profile + .presence__copy {
   margin-top: 36px;
 }
 
