@@ -366,7 +366,7 @@ a:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 28% 78%;
+  object-position: center 28%;
   opacity: 0.62;
   filter: grayscale(1);
 }
@@ -1292,6 +1292,10 @@ em.mark {
 }
 
 @media (min-width: 768px) {
+  .hero__video {
+    object-position: center 40%;
+  }
+
   .hero__lead {
     white-space: nowrap;
     max-width: none;
@@ -1369,7 +1373,8 @@ em.mark {
 
   .grain,
   .cursor,
-  .cursor-trail {
+  .cursor-trail,
+  .hero__media {
     display: none;
   }
 }
