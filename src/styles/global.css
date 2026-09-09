@@ -336,12 +336,14 @@ a:focus-visible {
 .hero {
   min-height: 100vh;
   min-height: 100svh;
-  display: grid;
-  align-items: center;
-  justify-items: stretch;
-  padding: calc(var(--nav-h) + 24px) 0 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: calc(var(--nav-h) + 16px) 0 12vh;
   overflow: hidden;
   position: relative;
+  text-align: left;
 }
 
 .hero > .shell {
@@ -382,8 +384,7 @@ a:focus-visible {
 }
 
 .hero__content {
-  width: 100%;
-  max-width: 100%;
+  display: block;
   text-align: left;
 }
 
