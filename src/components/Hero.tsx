@@ -81,12 +81,12 @@ export function Hero() {
             {renderHeroLead(identity.oneLiner)}
           </p>
         </div>
-      </div>
-      <div className="hero__meta shell" data-hero>
-        <span>Portfolio / {identity.year}</span>
-        <a className="hero__scroll" href="#intro">
-          Scroll
-        </a>
+        <div className="hero__meta" data-hero>
+          <span>Portfolio / {identity.year}</span>
+          <a className="hero__scroll" href="#intro">
+            Scroll
+          </a>
+        </div>
       </div>
     </section>
   );
