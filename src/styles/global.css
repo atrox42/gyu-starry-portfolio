@@ -359,31 +359,26 @@ a:focus-visible {
 }
 
 .hero__video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
-  opacity: 0.34;
+  object-position: center;
+  opacity: 0.38;
   filter: grayscale(1);
 }
 
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      ellipse 78% 68% at 50% 45%,
-      rgba(10, 10, 10, 0.18) 0%,
-      rgba(10, 10, 10, 0.52) 52%,
-      #0a0a0a 78%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(10, 10, 10, 0.58) 0%,
-      rgba(10, 10, 10, 0.18) 32%,
-      rgba(10, 10, 10, 0.22) 68%,
-      #0a0a0a 100%
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.58) 0%,
+    rgba(10, 10, 10, 0.4) 36%,
+    rgba(10, 10, 10, 0.42) 72%,
+    rgba(10, 10, 10, 0.62) 100%
+  );
 }
 
 .hero__content {
