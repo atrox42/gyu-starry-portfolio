@@ -3,8 +3,8 @@
 :root {
   --bg: #0a0a0a;
   --bg-raised: #111111;
-  --accent: #FF4C00;
-  --accent-rgb: 255, 76, 0;
+  --accent: #FF6B00;
+  --accent-rgb: 255, 107, 0;
   --text: #f3eee6;
   --muted: #8b8680;
   --dim: #5c5852;
@@ -17,12 +17,6 @@
   --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
     sans-serif;
   --tracking: -0.03em;
-}
-
-@supports (color: color(srgb 1 0 0)) {
-  :root {
-    --accent: color(srgb 1 0.298039 0);
-  }
 }
 
 *,
@@ -434,7 +428,7 @@ a:focus-visible {
   height: 2px;
   margin: 28px 0 24px;
   margin-inline: 0;
-  background-color: #FF4C00;
+  background-color: var(--accent);
   background-image: none;
   border: 0;
   box-shadow: none;
@@ -483,7 +477,7 @@ a:focus-visible {
   justify-content: center;
   width: 48px;
   height: 48px;
-  color: #FF4C00;
+  color: var(--accent);
   transform: translateX(-50%);
   opacity: 1;
   pointer-events: auto;

@@ -9,7 +9,7 @@ type Particle = {
 
 const TRAIL_CAP = 36;
 const HOVER_SELECTOR = "a, button, .work-card";
-const ACCENT_RGB_FALLBACK = "255, 76, 0";
+const ACCENT_RGB_FALLBACK = "255, 107, 0";
 
 function accentFill(alpha: number): string {
   const rgb =
