@@ -142,9 +142,11 @@ export function Hero() {
           </p>
           <h1 className="hero__title font-display" data-hero>
             <em>UiuX 디자이너,</em>
-            <span>{identity.name}</span>
+            <span className="hero__name">
+              {identity.name}
+              <span className="hero__rule" aria-hidden="true" />
+            </span>
           </h1>
-          <div className="hero__rule" data-hero />
           <p className="hero__lead" data-hero>
             {renderHeroLead(identity.oneLiner)}
           </p>
