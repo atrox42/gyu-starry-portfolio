@@ -151,11 +151,24 @@ export function Hero() {
         </div>
         <div className="hero__meta" data-hero>
           <span>Portfolio / {identity.year}</span>
-          <a className="hero__scroll" href="#intro">
-            Scroll
-          </a>
         </div>
       </div>
+      <a className="hero__scroll" href="#intro" aria-label="아래로 스크롤">
+        <svg
+          className="hero__scroll-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </section>
   );
 }
