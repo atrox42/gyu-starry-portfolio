@@ -336,12 +336,17 @@ a:focus-visible {
 .hero {
   min-height: 100vh;
   min-height: 100svh;
+  height: 100vh;
+  height: 100svh;
+  max-height: 100vh;
+  max-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  padding: calc(var(--nav-h) + 16px) 0 12vh;
+  padding: calc(var(--nav-h) + 16px) 0 72px;
   overflow: hidden;
+  isolation: isolate;
   position: relative;
   text-align: left;
 }
@@ -410,16 +415,29 @@ a:focus-visible {
   letter-spacing: var(--tracking);
 }
 
-.hero__title span {
+.hero__title span,
+.hero__name {
   color: var(--text);
 }
 
+.hero__name {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .hero__rule {
-  width: min(180px, 40vw);
+  display: block;
+  width: 100%;
   height: 2px;
   margin: 28px 0 24px;
   margin-inline: 0;
-  background: var(--accent);
+  background-color: #FF4C00;
+  background-image: none;
+  border: 0;
+  box-shadow: none;
 }
 
 .hero__lead {
@@ -458,16 +476,17 @@ a:focus-visible {
 .hero__scroll {
   position: absolute;
   left: 50%;
-  bottom: max(16px, env(safe-area-inset-bottom, 0px) + 12px);
-  z-index: 2;
+  bottom: max(20px, env(safe-area-inset-bottom, 0px) + 16px);
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  color: var(--accent);
+  width: 48px;
+  height: 48px;
+  color: #FF4C00;
   transform: translateX(-50%);
-  opacity: 0.88;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .hero__scroll:hover,
@@ -477,9 +496,9 @@ a:focus-visible {
 
 .hero__scroll-icon {
   display: block;
-  width: 22px;
-  height: 22px;
-  animation: hero-scroll-bounce 2s ease-in-out infinite;
+  width: 26px;
+  height: 26px;
+  animation: hero-scroll-bounce 1.6s ease-in-out infinite;
 }
 
 @keyframes hero-scroll-bounce {
@@ -488,7 +507,7 @@ a:focus-visible {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
 }
 
@@ -1327,6 +1346,17 @@ em.mark {
 }
 
 @media (min-width: 768px) {
+  .hero__scroll {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .hero__scroll-icon {
+    width: 28px;
+    height: 28px;
+  }
+
   .hero__video {
     object-position: center 40%;
   }
