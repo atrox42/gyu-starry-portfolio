@@ -1257,7 +1257,10 @@ em.mark {
 }
 
 .footer {
-  scroll-margin-top: calc(var(--scroll-offset) - var(--footer-pad-top));
+  /* 1px is the top border, which would otherwise sit inside the gap. */
+  scroll-margin-top: calc(var(--scroll-offset) - var(--footer-pad-top) - 1px);
+  /* Keep enough document below the heading for it to clear the nav. */
+  min-height: calc(100svh - var(--scroll-offset) + var(--footer-pad-top) + 4px);
   padding: var(--footer-pad-top) 0 40px;
   border-top: 1px solid var(--line);
 }
