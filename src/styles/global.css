@@ -193,8 +193,40 @@ a:focus-visible {
   justify-content: space-between;
   height: var(--nav-h);
   padding: 0 var(--pad);
+  background: transparent;
+}
+
+/* Blur and dim live on a layer behind the labels so the text stays crisp.
+   The layer runs past the bar and masks to transparent, so the edge fades
+   instead of ending in a hard cut. */
+.nav::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: calc(var(--nav-h) + 32px);
+  pointer-events: none;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.44), transparent);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.nav > * {
+  position: relative;
+  z-index: 1;
 }
 
 .nav__brand,
