@@ -147,53 +147,52 @@ export const presence = {
       paragraphs: [
         "등산·트레일 러닝·트래킹을 다니며 입은 아웃핏과, 실제로 쓰는 아웃도어 아이템을 소개합니다. 한 장의 사진에서도 장비가 어떻게 쓰이는지, 코디가 어떤지 보이도록 담습니다.",
       ],
-      // Public Instagram snapshot, 2026-09-08 (web_profile_info).
+      // Public Instagram snapshot, 2026-09-27 (web_profile_info).
       profile: {
         handle: identity.handle,
         displayName: identity.name,
         avatar: "presence/instagram-avatar.jpg",
-        posts: 227,
-        followers: 5216,
-        following: 709,
+        posts: 232,
+        followers: 5376,
+        following: 716,
       },
       posts: [
         {
           thumb: "presence/instagram-01.jpg",
-          url: "https://www.instagram.com/reel/Dc4zXavzrRu/",
+          url: "https://www.instagram.com/reel/DdxbQjUTLPd/",
           isVideo: true,
         },
         {
           thumb: "presence/instagram-02.jpg",
-          url: "https://www.instagram.com/reel/Dc3CwjFzQgA/",
-          isVideo: true,
+          url: "https://www.instagram.com/p/DdfsyPtkWQp/",
         },
         {
           thumb: "presence/instagram-03.jpg",
-          url: "https://www.instagram.com/p/DcGbNkNk9kK/",
+          url: "https://www.instagram.com/p/DdQ08qkE_mK/",
         },
         {
           thumb: "presence/instagram-04.jpg",
-          url: "https://www.instagram.com/p/DafaLt7k9G5/",
+          url: "https://www.instagram.com/p/DcGbNkNk9kK/",
         },
         {
           thumb: "presence/instagram-05.jpg",
-          url: "https://www.instagram.com/p/DapzYoik9iH/",
+          url: "https://www.instagram.com/p/DafaLt7k9G5/",
         },
         {
           thumb: "presence/instagram-06.jpg",
-          url: "https://www.instagram.com/p/DauzmFLlDDi/",
+          url: "https://www.instagram.com/p/DapzYoik9iH/",
         },
         {
           thumb: "presence/instagram-07.jpg",
-          url: "https://www.instagram.com/p/DahuVvPEzPV/",
+          url: "https://www.instagram.com/p/DauzmFLlDDi/",
         },
         {
           thumb: "presence/instagram-08.jpg",
-          url: "https://www.instagram.com/p/DWlYltnEXEJ/",
+          url: "https://www.instagram.com/p/DahuVvPEzPV/",
         },
         {
           thumb: "presence/instagram-09.jpg",
-          url: "https://www.instagram.com/p/DVBrdPRkySL/",
+          url: "https://www.instagram.com/p/DWlYltnEXEJ/",
         },
       ],
     },
