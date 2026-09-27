@@ -12,6 +12,10 @@
   --line-strong: rgba(243, 238, 230, 0.18);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --nav-h: 72px;
+  --nav-scroll-gap: 24px;
+  --scroll-offset: calc(var(--nav-h) + var(--nav-scroll-gap));
+  --section-pad: clamp(80px, 14vw, 160px);
+  --footer-pad-top: 80px;
   --pad: clamp(20px, 4vw, 56px);
   --max: 1320px;
   --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
@@ -33,7 +37,8 @@ html {
   word-break: keep-all;
   overflow-wrap: break-word;
   scroll-behavior: auto;
-  scroll-padding-top: var(--nav-h);
+  /* Anchor offset lives on the targets so it is not added twice. */
+  scroll-padding-top: 0;
 }
 
 html.lenis,
@@ -188,7 +193,7 @@ a:focus-visible {
   justify-content: space-between;
   height: var(--nav-h);
   padding: 0 var(--pad);
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.88), transparent);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.44), transparent);
   backdrop-filter: blur(10px);
 }
 
@@ -297,14 +302,14 @@ a:focus-visible {
   margin-inline: auto;
 }
 
-.section,
-.footer,
 .hero {
   scroll-margin-top: var(--nav-h);
 }
 
 .section {
-  padding: clamp(80px, 14vw, 160px) 0;
+  /* Cancel top padding so the heading, not the empty pad, clears the nav. */
+  scroll-margin-top: calc(var(--scroll-offset) - var(--section-pad));
+  padding: var(--section-pad) 0;
   position: relative;
 }
 
@@ -1252,7 +1257,8 @@ em.mark {
 }
 
 .footer {
-  padding: 80px 0 40px;
+  scroll-margin-top: calc(var(--scroll-offset) - var(--footer-pad-top));
+  padding: var(--footer-pad-top) 0 40px;
   border-top: 1px solid var(--line);
 }
 
